@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import RecipesGrid from './components/RecipesGrid';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    recipes: []
+  }
+
+  componentDidMount() {
+    fetch('https://192.168.1.136:8443/recipes-manager/v1/recipes')
+    // fetch('http://localhost:8443/recipes-manager/v1/recipes')
+        .then(res => res.json())
+        .then(recipes => recipes.recipes)
+        .then((data) => {
+          this.setState({recipes: data})
+        })
+        .catch(console.log)
+  }
+
+  render() {
+    return (
+        <RecipesGrid recipes={this.state.recipes}/>
+    )
+  }
 }
 
 export default App;

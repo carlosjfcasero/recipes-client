@@ -1,0 +1,51 @@
+name: Build project
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Calculate new version
+        run: |
+          version=$(node -pe "require('./package.json')['version']")
+          baseVersion=${version%"-SNAPSHOT"}
+          echo Base version detected: $baseVersion
+          tags=($(git tag -n $baseVersion-M* --format="%(refname:strip=2)"))
+          echo Git tags found with current base version $baseVersion: ${tags[*]}
+          if [ ${#tags[@]} == 0 ]
+          then
+              echo No git tags found for base version $baseVersion, setting $baseVersion-M1...
+              milestoneVersion=1
+          else
+              echo Git tags found for base version $baseVersion. Calculating new milestone version...
+              IFS=$'\n'
+              latestMilestoneVersion=$(echo "${tags[*]}" | sort -t "M" -k 2 -gr | head -n1)
+              echo Latest milestone version found: $latestMilestoneVersion
+
+              latestMilestoneVersionNumber=$(printf "%s\n" "${latestMilestoneVersion##*-M}")
+              milestoneVersion=$((latestMilestoneVersionNumber + 1))
+          fi
+          buildVersion=$baseVersion-M$milestoneVersion
+          artifactId=$(node -pe "require('./package.json')['name']")
+          echo "buildVersion=$buildVersion" >> $GITHUB_ENV
+          echo "artifactId=$artifactId" >> $GITHUB_ENV
+
+      - name: Upgrade package version
+        run: npm version ${buildVersion} --no-git-tag-version
+
+      - name: Create git tag
+        run: |
+          git tag ${buildVersion}
+          git push origin ${buildVersion}
