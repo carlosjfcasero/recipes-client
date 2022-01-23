@@ -5,11 +5,11 @@ import RecipeCard from "./RecipeCard";
 const RecipesGrid = ({recipes}) => {
   return (
       <div>
-        <center><h1>Recipe List</h1></center>
-        <Row xs={3} md={3} lg={3} className="g-4">
+        {/*<center><h1>Recipe List</h1></center>*/}
+        <Row className="g-4" style={{padding: "25px"}}>
           {Array.from(recipes, recipe => {
             return (
-                <Col xs={3} md={3} lg={3}>
+                <Col xs={12} md={6} lg={4} xl={3} xxl={3}>
                   <RecipeCard recipe={recipe}/>
                 </Col>)
           })}

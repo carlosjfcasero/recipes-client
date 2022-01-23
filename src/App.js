@@ -1,25 +1,24 @@
 import React, {Component} from 'react';
-import RecipesGrid from './components/RecipesGrid';
+import {Route, Routes} from 'react-router-dom';
+import CreateRecipe from "./pages/CreateRecipe";
+import Navigation from "./components/Navigation";
+import ShowRecipes from "./pages/ShowRecipes";
 
 class App extends Component {
   state = {
     recipes: []
   }
 
-  componentDidMount() {
-    fetch('https://192.168.1.136:8443/recipes-manager/v1/recipes')
-    // fetch('http://localhost:8443/recipes-manager/v1/recipes')
-        .then(res => res.json())
-        .then(recipes => recipes.recipes)
-        .then((data) => {
-          this.setState({recipes: data})
-        })
-        .catch(console.log)
-  }
-
   render() {
     return (
-        <RecipesGrid recipes={this.state.recipes}/>
+        <>
+          <Navigation/>
+          <Routes>
+            <Route path='/new-recipe' element={<CreateRecipe/>}/>
+            <Route path='/show-recipes' element={<ShowRecipes/>}/>
+            <Route path='/home' element={<ShowRecipes/>}/>
+          </Routes>
+        </>
     )
   }
 }
