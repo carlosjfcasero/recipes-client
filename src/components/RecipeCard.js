@@ -14,8 +14,9 @@ export default function RecipeCard({recipe}) {
 
   return (
       <>
-        <Card border="primary" style={{width: '18rem'}} onClick={handleShow}>
-          <CardActionArea>
+        <Card border="primary" onClick={handleShow} style={{height: "100%"}}>
+          {/*TODO: use primary color instead*/}
+          <CardActionArea style={{height: "100%", color: "#412774"}}>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {recipe.name}
@@ -27,7 +28,7 @@ export default function RecipeCard({recipe}) {
           </CardActionArea>
         </Card>
 
-        <Modal show={show} onHide={handleClose} scrollable={true}>
+        <Modal show={show} onHide={handleClose} scrollable={true} size="xl">
           <Modal.Header closeButton>
             <Modal.Title>{recipe.name}</Modal.Title>
           </Modal.Header>

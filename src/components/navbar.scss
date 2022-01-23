@@ -1,0 +1,39 @@
+//navbar.scss
+@import "../scss/custom";
+
+.navbar {
+  color: white;
+  width: 100%;
+  min-height: 6vh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $primary;
+  transition: all .7s ease-in;
+}
+
+.navbar-brand {
+  color: white !important;
+}
+
+.nav-link {
+  color: white !important;
+  opacity: 50%;
+}
+
+//IMPORTANT
+//.scrolled {
+//  position: fixed;
+//  top: 0;
+//  left: 0;
+//  background-color: purple;
+//}
+//
+//.logo img {
+//  width: 50px;
+//}
+
+//.navigation {
+//  your navigation styles
+//}
