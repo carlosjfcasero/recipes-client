@@ -4,6 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import * as Constants from "../Constants";
 
 function TabPanel(props) {
   const {children, value, index, ...other} = props;
@@ -47,31 +48,41 @@ export default function BasicTabs({recipe}) {
   };
 
   return (
-      <Box style={{color: "#412774"}} sx={{width: '100%'}}>
+      <Box style={{color: Constants.PRIMARY_COLOR}} sx={{width: '100%'}}>
         <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
-          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" TabIndicatorProps={{style: {background:'#412774'}}}>
-            {/*TODO: use primary color instead*/}
+          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example"
+                TabIndicatorProps={{style: {background: Constants.PRIMARY_COLOR}}}>
             <Tab label="Ingredientes" {...a11yProps(0)} />
             <Tab label="Descripción" {...a11yProps(1)} />
             <Tab label="Detalles" {...a11yProps(2)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          {recipe.ingredients}
+          <div dangerouslySetInnerHTML={{__html: recipe.ingredients}}/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          {recipe.description}
+          <div dangerouslySetInnerHTML={{__html: recipe.description}}/>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          {recipe.course}
+          <a style={{fontSize: Constants.RECIPE_DETAILS_KEY_SIZE}}>Plato: </a>{recipe.course}
           <br/>
-          {recipe.temperature}
+          <a style={{fontSize: Constants.RECIPE_DETAILS_KEY_SIZE}}>Temperatura: </a> {recipe.temperature}
           <br/>
-          {recipe.favourite}
+          <a style={{fontSize: Constants.RECIPE_DETAILS_KEY_SIZE}}>Favorito: </a>
+          {
+            (recipe.favourite === true)
+                ? <a> Sí </a>
+                : <a> No </a>
+          }
           <br/>
-          {recipe.origin}
+          <a style={{fontSize: Constants.RECIPE_DETAILS_KEY_SIZE}}>Origen: </a> {recipe.origin}
           <br/>
-          {recipe.labels}
+          <a style={{fontSize: Constants.RECIPE_DETAILS_KEY_SIZE}}>Etiquetas: </a> {recipe.tags}
+          <br/>
+          <a style={{fontSize: Constants.RECIPE_DETAILS_KEY_SIZE}}>Tiempo (hh:mm): </a> {recipe.time}
+          <br/>
+          <a style={{fontSize: Constants.RECIPE_DETAILS_KEY_SIZE}}>URL:</a> <a href={recipe.url} target="_blank">Receta
+          original</a>
         </TabPanel>
       </Box>
   );

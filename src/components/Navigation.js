@@ -5,7 +5,7 @@ const Navigation = () => {
   return (
       <Navbar expand="lg">
         <Container fluid>
-          <Navbar.Brand href="home">Recipes Manager</Navbar.Brand>
+          <Navbar.Brand href="/">Recipes Manager</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav"/>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav

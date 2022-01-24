@@ -5,6 +5,8 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import {CardActionArea} from '@mui/material';
 import BasicTabs from "./BasicTabs";
+import * as Constants from "../Constants";
+import './RecipeCard.css';
 
 export default function RecipeCard({recipe}) {
   const [show, setShow] = useState(false);
@@ -15,8 +17,7 @@ export default function RecipeCard({recipe}) {
   return (
       <>
         <Card border="primary" onClick={handleShow} style={{height: "100%"}}>
-          {/*TODO: use primary color instead*/}
-          <CardActionArea style={{height: "100%", color: "#412774"}}>
+          <CardActionArea style={{height: "100%", color: Constants.PRIMARY_COLOR}}>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {recipe.name}
