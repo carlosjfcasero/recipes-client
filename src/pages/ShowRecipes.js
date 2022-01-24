@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import RecipesGrid from "../components/RecipesGrid";
+import * as Constants from "../Constants";
 
 class ShowRecipes extends Component {
 
@@ -8,22 +9,17 @@ class ShowRecipes extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:8443/recipes-manager/v1/recipes')
+    fetch(Constants.SHOW_RECIPES_URL)
         .then(res => res.json())
         .then(recipes => recipes.recipes)
         .then(recipes => recipes.sort((a, b) => a.name > b.name ? 1 : -1))
-        .then((data) => {
-          this.setState({recipes: data})
-        })
+        .then(sortedRecipes => this.setState({recipes: sortedRecipes}))
         .catch(console.log)
   }
 
   render() {
-    return (
-        <RecipesGrid recipes={this.state.recipes}/>
-    );
+    return (<RecipesGrid recipes={this.state.recipes}/>);
   }
-
 }
 
 export default ShowRecipes;

@@ -14,9 +14,9 @@ class App extends Component {
         <>
           <Navigation/>
           <Routes>
+            <Route path='/' element={<ShowRecipes/>}/>
             <Route path='/new-recipe' element={<CreateRecipe/>}/>
             <Route path='/show-recipes' element={<ShowRecipes/>}/>
-            <Route path='/home' element={<ShowRecipes/>}/>
           </Routes>
         </>
     )
