@@ -4,7 +4,7 @@ import CustomSelector from "../components/CustomSelector";
 import {WithContext as ReactTags} from 'react-tag-input';
 import MyRichTextEditor from "../components/MyRichTextEditor";
 import * as Constants from "../Constants";
-import {CREATE_NEW_RECIPE_URL, SHOW_RECIPES_URL} from "../Constants";
+import './CreateRecipe.css'
 
 const KeyCodes = {
   comma: 188,
@@ -146,10 +146,10 @@ class CreateRecipe extends Component {
     return (
         <>
           <Fragment>
-            <h1 style={{textAlign: "center", padding: "2%", color: "#412774"}}>Nueva receta</h1>
+            <h1 style={{textAlign: "center", padding: "2%", color: Constants.PRIMARY_COLOR}}>Nueva receta</h1>
             <form className="row" onSubmit={this.sendNewRecipe} onKeyPress={this.onKeyPress}>
               <div>
-                <h4 style={{padding: "1%", color: "#412774"}}>Título</h4>
+                <h4 style={{padding: "1%", color: Constants.PRIMARY_COLOR}}>Título</h4>
               </div>
               <div>
                 <div className="col-4">
@@ -158,7 +158,7 @@ class CreateRecipe extends Component {
                 </div>
               </div>
               <div>
-                <h4 style={{padding: "1%", color: "#412774"}}>Descripción</h4>
+                <h4 style={{padding: "1%", color: Constants.PRIMARY_COLOR}}>Descripción</h4>
               </div>
               <div>
                 <div className="col-4">
@@ -166,7 +166,7 @@ class CreateRecipe extends Component {
                 </div>
               </div>
               <div>
-                <h4 style={{padding: "1%", color: "#412774"}}>Favorito</h4>
+                <h4 style={{padding: "1%", color: Constants.PRIMARY_COLOR}}>Favorito</h4>
               </div>
               <div>
                 <div className="col-4">
@@ -174,7 +174,7 @@ class CreateRecipe extends Component {
                 </div>
               </div>
               <div>
-                <h4 style={{padding: "1%", color: "#412774"}}>Ingredientes</h4>
+                <h4 style={{padding: "1%", color: Constants.PRIMARY_COLOR}}>Ingredientes</h4>
               </div>
               <div>
                 <div className="col-4">
@@ -186,7 +186,7 @@ class CreateRecipe extends Component {
               <CustomSelector handleInputChange={this.handleInputChange} values={this.state.temperatureValues}
                               name={"temperature"} label={"Temperatura"}/>
               <div>
-                <h4 style={{padding: "1%", color: "#412774"}}>Etiquetas</h4>
+                <h4 style={{padding: "1%", color: Constants.PRIMARY_COLOR}}>Etiquetas</h4>
               </div>
               <div>
                 <ReactTags tags={this.state.tags}
@@ -199,7 +199,7 @@ class CreateRecipe extends Component {
               <CustomSelector handleInputChange={this.handleInputChange} values={this.state.courseValues}
                               name={"course"} label={"Plato"}/>
               <div>
-                <h4 style={{padding: "1%", color: "#412774"}}>URL</h4>
+                <h4 style={{padding: "1%", color: Constants.PRIMARY_COLOR}}>URL</h4>
               </div>
               <div>
                 <div className="col-4">
@@ -208,7 +208,7 @@ class CreateRecipe extends Component {
                 </div>
               </div>
               <div>
-                <h4 style={{padding: "1%", color: "#412774"}}>Tiempo (HH:mm)</h4>
+                <h4 style={{padding: "1%", color: Constants.PRIMARY_COLOR}}>Tiempo (HH:mm)</h4>
               </div>
               <div>
                 <div className="col-4">
