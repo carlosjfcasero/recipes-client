@@ -5,7 +5,6 @@ import RecipeCard from "./RecipeCard";
 const RecipesGrid = ({recipes}) => {
   return (
       <div>
-        {/*<center><h1>Recipe List</h1></center>*/}
         <Row className="g-4" style={{padding: "25px"}}>
           {Array.from(recipes, recipe => {
             return (
